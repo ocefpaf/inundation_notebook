@@ -1152,7 +1152,7 @@ for station in include.keys():
 
         popup = "<div align='center'> {} <br><iframe src='{}' alt='image'"
         popup += "width='{}px' height='{}px' frameBorder='0'></div>"
-        popup = popup.format('{}'.format(sta_name), html,
+        popup = popup.format('{}'.format(station), html,
                              (width*resolution)+75, (height*resolution)+50)
         kw = dict(popup=popup, width=(width*resolution)+75)
 
