@@ -50,7 +50,7 @@
 
 <body>
 
-   <div class="folium-map" id="folium_a457a9f54c2f4693af848e9912018ca4" style="width: 750px; height: 500px"></div>
+   <div class="folium-map" id="folium_f67da786c0c948b4a9b44cf690cf2400" style="width: 750px; height: 500px"></div>
 
    <script>
 
@@ -94,7 +94,7 @@
       /*
       Creates the map and adds the selected layers
       */
-      var map = L.map('folium_a457a9f54c2f4693af848e9912018ca4', {
+      var map = L.map('folium_f67da786c0c948b4a9b44cf690cf2400', {
                                        center:[42.5, -70.5],
                                        zoom: 7,
                                        maxBounds: bounds,
@@ -112,7 +112,7 @@
 							-70.2620773315],
 							{'icon':marker_1_icon}
 							);
-      marker_1.bindPopup("<b>Portland, ME</b>\nNECOFS");
+      marker_1.bindPopup("<b>Portland, ME</b>\nNECOFS_GOM3");
       marker_1._popup.options.maxWidth = 300;
       clusteredmarkers.addLayer(marker_1)
       
@@ -121,7 +121,7 @@
 							-70.7076950073],
 							{'icon':marker_2_icon}
 							);
-      marker_2.bindPopup("<b>Fort Point, NH</b>\nNECOFS");
+      marker_2.bindPopup("<b>Fort Point, NH</b>\nNECOFS_GOM3");
       marker_2._popup.options.maxWidth = 300;
       clusteredmarkers.addLayer(marker_2)
       
@@ -130,43 +130,43 @@
 							-70.693015],
 							{'icon':marker_3_icon}
 							);
-      marker_3.bindPopup("<b>Fort Point, NH</b>\nESTOFS");
+      marker_3.bindPopup("<b>Fort Point, NH</b>\nESTOFS_NOAA");
       marker_3._popup.options.maxWidth = 300;
       clusteredmarkers.addLayer(marker_3)
       
       var marker_4_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_4 = L.marker([42.3724250793, 
-							-71.058265686],
+      var marker_4 = L.marker([43.0734062195, 
+							-70.7109527588],
 							{'icon':marker_4_icon}
 							);
-      marker_4.bindPopup("<b>Boston, MA</b>\nNECOFS");
+      marker_4.bindPopup("<b>Fort Point, NH</b>\nNECOFS_FVCOM");
       marker_4._popup.options.maxWidth = 300;
       clusteredmarkers.addLayer(marker_4)
       
       var marker_5_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_5 = L.marker([41.7054786682, 
-							-69.9514846802],
+      var marker_5 = L.marker([42.3724250793, 
+							-71.058265686],
 							{'icon':marker_5_icon}
 							);
-      marker_5.bindPopup("<b>Chatham, MA</b>\nNECOFS");
+      marker_5.bindPopup("<b>Boston, MA</b>\nNECOFS_GOM3");
       marker_5._popup.options.maxWidth = 300;
       clusteredmarkers.addLayer(marker_5)
       
       var marker_6_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_6 = L.marker([41.6708, 
-							-69.91997],
+      var marker_6 = L.marker([42.3518409729, 
+							-71.0523986816],
 							{'icon':marker_6_icon}
 							);
-      marker_6.bindPopup("<b>Chatham, MA</b>\nHYbrid");
+      marker_6.bindPopup("<b>Boston, MA</b>\nNECOFS_FVCOM");
       marker_6._popup.options.maxWidth = 300;
       clusteredmarkers.addLayer(marker_6)
       
       var marker_7_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_7 = L.marker([41.682333, 
-							-69.913522],
+      var marker_7 = L.marker([41.5014962631, 
+							-70.6725499925],
 							{'icon':marker_7_icon}
 							);
-      marker_7.bindPopup("<b>Chatham, MA</b>\nESTOFS");
+      marker_7.bindPopup("<b>Woods Hole, MA</b>\nCOAWST_USGS");
       marker_7._popup.options.maxWidth = 300;
       clusteredmarkers.addLayer(marker_7)
       
@@ -175,34 +175,34 @@
 							-70.680480957],
 							{'icon':marker_8_icon}
 							);
-      marker_8.bindPopup("<b>Woods Hole, MA</b>\nNECOFS");
+      marker_8.bindPopup("<b>Woods Hole, MA</b>\nNECOFS_GOM3");
       marker_8._popup.options.maxWidth = 300;
       clusteredmarkers.addLayer(marker_8)
       
       var marker_9_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_9 = L.marker([41.5014962631, 
-							-70.6725499925],
+      var marker_9 = L.marker([41.487281, 
+							-70.672761],
 							{'icon':marker_9_icon}
 							);
-      marker_9.bindPopup("<b>Woods Hole, MA</b>\nCOAWST");
+      marker_9.bindPopup("<b>Woods Hole, MA</b>\nESTOFS_NOAA");
       marker_9._popup.options.maxWidth = 300;
       clusteredmarkers.addLayer(marker_9)
       
       var marker_10_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_10 = L.marker([41.487281, 
-							-70.672761],
+      var marker_10 = L.marker([41.5218696594, 
+							-70.6702270508],
 							{'icon':marker_10_icon}
 							);
-      marker_10.bindPopup("<b>Woods Hole, MA</b>\nESTOFS");
+      marker_10.bindPopup("<b>Woods Hole, MA</b>\nNECOFS_FVCOM");
       marker_10._popup.options.maxWidth = 300;
       clusteredmarkers.addLayer(marker_10)
       
       var marker_11_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_11 = L.marker([41.5087013245, 
-							-71.3224258423],
+      var marker_11 = L.marker([41.4821150019, 
+							-71.3497549985],
 							{'icon':marker_11_icon}
 							);
-      marker_11.bindPopup("<b>Newport, RI</b>\nNECOFS");
+      marker_11.bindPopup("<b>Newport, RI</b>\nROMS_ESPRESSO");
       marker_11._popup.options.maxWidth = 300;
       clusteredmarkers.addLayer(marker_11)
       
@@ -211,16 +211,16 @@
 							-71.3358743905],
 							{'icon':marker_12_icon}
 							);
-      marker_12.bindPopup("<b>Newport, RI</b>\nCOAWST");
+      marker_12.bindPopup("<b>Newport, RI</b>\nCOAWST_USGS");
       marker_12._popup.options.maxWidth = 300;
       clusteredmarkers.addLayer(marker_12)
       
       var marker_13_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_13 = L.marker([41.4821150019, 
-							-71.3497549985],
+      var marker_13 = L.marker([41.5087013245, 
+							-71.3224258423],
 							{'icon':marker_13_icon}
 							);
-      marker_13.bindPopup("<b>Newport, RI</b>\nROMS");
+      marker_13.bindPopup("<b>Newport, RI</b>\nNECOFS_GOM3");
       marker_13._popup.options.maxWidth = 300;
       clusteredmarkers.addLayer(marker_13)
       
@@ -229,7 +229,7 @@
 							-71.341956],
 							{'icon':marker_14_icon}
 							);
-      marker_14.bindPopup("<b>Newport, RI</b>\nESTOFS");
+      marker_14.bindPopup("<b>Newport, RI</b>\nESTOFS_NOAA");
       marker_14._popup.options.maxWidth = 300;
       clusteredmarkers.addLayer(marker_14)
       
@@ -238,7 +238,7 @@
 							-71.3951568604],
 							{'icon':marker_15_icon}
 							);
-      marker_15.bindPopup("<b>Providence, RI</b>\nNECOFS");
+      marker_15.bindPopup("<b>Providence, RI</b>\nNECOFS_GOM3");
       marker_15._popup.options.maxWidth = 300;
       clusteredmarkers.addLayer(marker_15)
       
@@ -247,7 +247,7 @@
 							-71.9729766846],
 							{'icon':marker_16_icon}
 							);
-      marker_16.bindPopup("<b>Montauk, NY</b>\nNECOFS");
+      marker_16.bindPopup("<b>Montauk, NY</b>\nNECOFS_GOM3");
       marker_16._popup.options.maxWidth = 300;
       clusteredmarkers.addLayer(marker_16)
       
@@ -256,7 +256,7 @@
 							-71.989277],
 							{'icon':marker_17_icon}
 							);
-      marker_17.bindPopup("<b>Montauk, NY</b>\nESTOFS");
+      marker_17.bindPopup("<b>Montauk, NY</b>\nESTOFS_NOAA");
       marker_17._popup.options.maxWidth = 300;
       clusteredmarkers.addLayer(marker_17)
       
@@ -292,103 +292,94 @@
       map.addLayer(marker_20)
       
       var marker_21_icon = L.AwesomeMarkers.icon({ icon: 'ok-sign',markerColor: 'green',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_21 = L.marker([41.6885, 
-							-69.9511],
+      var marker_21 = L.marker([41.5233, 
+							-70.6717],
 							{'icon':marker_21_icon}
 							);
-      marker_21.bindPopup("<div align='center'> Chatham, MA <br><iframe src='station_8447435.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
+      marker_21.bindPopup("<div align='center'> Woods Hole, MA <br><iframe src='station_8447930.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
       marker_21._popup.options.maxWidth = 600;
       map.addLayer(marker_21)
       
       var marker_22_icon = L.AwesomeMarkers.icon({ icon: 'ok-sign',markerColor: 'green',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_22 = L.marker([41.5233, 
-							-70.6717],
+      var marker_22 = L.marker([41.505, 
+							-71.3267],
 							{'icon':marker_22_icon}
 							);
-      marker_22.bindPopup("<div align='center'> Woods Hole, MA <br><iframe src='station_8447930.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
+      marker_22.bindPopup("<div align='center'> Newport, RI <br><iframe src='station_8452660.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
       marker_22._popup.options.maxWidth = 600;
       map.addLayer(marker_22)
       
       var marker_23_icon = L.AwesomeMarkers.icon({ icon: 'ok-sign',markerColor: 'green',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_23 = L.marker([41.505, 
-							-71.3267],
+      var marker_23 = L.marker([41.8071, 
+							-71.4012],
 							{'icon':marker_23_icon}
 							);
-      marker_23.bindPopup("<div align='center'> Newport, RI <br><iframe src='station_8452660.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
+      marker_23.bindPopup("<div align='center'> Providence, RI <br><iframe src='station_8454000.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
       marker_23._popup.options.maxWidth = 600;
       map.addLayer(marker_23)
       
       var marker_24_icon = L.AwesomeMarkers.icon({ icon: 'ok-sign',markerColor: 'green',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_24 = L.marker([41.8071, 
-							-71.4012],
+      var marker_24 = L.marker([41.0483, 
+							-71.96],
 							{'icon':marker_24_icon}
 							);
-      marker_24.bindPopup("<div align='center'> Providence, RI <br><iframe src='station_8454000.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
+      marker_24.bindPopup("<div align='center'> Montauk, NY <br><iframe src='station_8510560.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
       marker_24._popup.options.maxWidth = 600;
       map.addLayer(marker_24)
       
-      var marker_25_icon = L.AwesomeMarkers.icon({ icon: 'ok-sign',markerColor: 'green',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_25 = L.marker([41.0483, 
-							-71.96],
+      var marker_25_icon = L.AwesomeMarkers.icon({ icon: 'question-sign',markerColor: 'red',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_25 = L.marker([43.32, 
+							-70.5633],
 							{'icon':marker_25_icon}
 							);
-      marker_25.bindPopup("<div align='center'> Montauk, NY <br><iframe src='station_8510560.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
-      marker_25._popup.options.maxWidth = 600;
+      marker_25.bindPopup("<b>Station:</b> Wells, ME<br><b>Datum:</b> MLLW<br>");
+      marker_25._popup.options.maxWidth = 300;
       map.addLayer(marker_25)
       
       var marker_26_icon = L.AwesomeMarkers.icon({ icon: 'question-sign',markerColor: 'red',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_26 = L.marker([43.32, 
-							-70.5633],
+      var marker_26 = L.marker([41.7043, 
+							-71.1641],
 							{'icon':marker_26_icon}
 							);
-      marker_26.bindPopup("<b>Station:</b> Wells, ME<br><b>Datum:</b> MLLW<br>");
+      marker_26.bindPopup("<b>Station:</b> Fall River, MA<br><b>Datum:</b> MLLW<br>");
       marker_26._popup.options.maxWidth = 300;
       map.addLayer(marker_26)
       
       var marker_27_icon = L.AwesomeMarkers.icon({ icon: 'question-sign',markerColor: 'red',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_27 = L.marker([41.7043, 
-							-71.1641],
+      var marker_27 = L.marker([41.285, 
+							-70.0967],
 							{'icon':marker_27_icon}
 							);
-      marker_27.bindPopup("<b>Station:</b> Fall River, MA<br><b>Datum:</b> MLLW<br>");
+      marker_27.bindPopup("<b>Station:</b> Nantucket Island, MA<br><b>Datum:</b> MLLW<br>");
       marker_27._popup.options.maxWidth = 300;
       map.addLayer(marker_27)
       
       var marker_28_icon = L.AwesomeMarkers.icon({ icon: 'question-sign',markerColor: 'red',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_28 = L.marker([41.285, 
-							-70.0967],
+      var marker_28 = L.marker([41.7167, 
+							-71.3433],
 							{'icon':marker_28_icon}
 							);
-      marker_28.bindPopup("<b>Station:</b> Nantucket Island, MA<br><b>Datum:</b> MLLW<br>");
+      marker_28.bindPopup("<b>Station:</b> Conimicut Light, RI<br><b>Datum:</b> MLLW<br>");
       marker_28._popup.options.maxWidth = 300;
       map.addLayer(marker_28)
       
-      var marker_29_icon = L.AwesomeMarkers.icon({ icon: 'question-sign',markerColor: 'red',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_29 = L.marker([41.7167, 
-							-71.3433],
+      var marker_29_icon = L.AwesomeMarkers.icon({ icon: 'ok',markerColor: 'green',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_29 = L.marker([42.9259, 
+							-70.7166],
 							{'icon':marker_29_icon}
 							);
-      marker_29.bindPopup("<b>Station:</b> Conimicut Light, RI<br><b>Datum:</b> MLLW<br>");
-      marker_29._popup.options.maxWidth = 300;
+      marker_29.bindPopup("<div align='center'> Scituate, MA <br><iframe src='station_scituate_ma.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
+      marker_29._popup.options.maxWidth = 600;
       map.addLayer(marker_29)
       
       var marker_30_icon = L.AwesomeMarkers.icon({ icon: 'ok',markerColor: 'green',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_30 = L.marker([42.9259, 
-							-70.7166],
+      var marker_30 = L.marker([43.272411, 
+							-70.583883],
 							{'icon':marker_30_icon}
 							);
-      marker_30.bindPopup("<div align='center'> Scituate, MA <br><iframe src='station_scituate_ma.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
+      marker_30.bindPopup("<div align='center'> Wells, ME <br><iframe src='station_wells_me.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
       marker_30._popup.options.maxWidth = 600;
       map.addLayer(marker_30)
-      
-      var marker_31_icon = L.AwesomeMarkers.icon({ icon: 'ok',markerColor: 'green',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
-      var marker_31 = L.marker([43.272411, 
-							-70.583883],
-							{'icon':marker_31_icon}
-							);
-      marker_31.bindPopup("<div align='center'> Wells, ME <br><iframe src='station_wells_me.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
-      marker_31._popup.options.maxWidth = 600;
-      map.addLayer(marker_31)
       
 
       
