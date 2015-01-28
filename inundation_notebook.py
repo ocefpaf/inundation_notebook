@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 import time
 
@@ -9,21 +9,22 @@ import time
 start_time = time.time()
 
 
-# In[ ]:
+# In[2]:
 
 import pytz
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 
 
-# Choose the date range (e.g: stop = datetime(2014, 7, 7, 12)).
-stop = datetime(2015, 1, 30, 12)
-run_name = '{:%Y-%m-%d}'.format(stop)
+# Choose the date range: 7 days from today.
+run_name = date.today().strftime("%Y-%m-%d")
+today = datetime.strptime(run_name, "%Y-%m-%d")
+today = today.replace(tzinfo=pytz.utc)
 
-stop = stop.replace(tzinfo=pytz.utc)
-start = stop - timedelta(days=7)
+start = today - timedelta(days=4)
+stop = today + timedelta(days=3)
 
 # NERACOOS Mass Bay Region.
-bbox = [-72.0, 41.0, -69.0, 43.0]
+bbox = [-72, 41, -69, 44]
 
 # CF-names to look for (Sea Surface Height).
 name_list = ['sea_surface_height',
@@ -34,7 +35,7 @@ name_list = ['sea_surface_height',
              'sea_surface_height_above_reference_ellipsoid']
 
 
-# In[ ]:
+# In[3]:
 
 import iris
 import pyoos
@@ -65,7 +66,7 @@ log.info('owslib version: {}'.format(owslib.__version__))
 log.info('pyoos version: {}'.format(pyoos.__version__))
 
 
-# In[ ]:
+# In[4]:
 
 def fes_date_filter(start, stop, constraint='overlaps'):
     """Take datetime-like objects and returns a fes filter for date range.
@@ -91,7 +92,7 @@ def fes_date_filter(start, stop, constraint='overlaps'):
     return begin, end
 
 
-# In[ ]:
+# In[5]:
 
 from owslib import fes
 
@@ -110,7 +111,7 @@ begin, end = fes_date_filter(start, stop)
 filter_list = [fes.And([fes.BBox(bbox), begin, end, or_filt, not_filt])]
 
 
-# In[ ]:
+# In[6]:
 
 from owslib.csw import CatalogueServiceWeb
 
@@ -124,7 +125,7 @@ log.info("CSW version: {}".format(csw.version))
 log.info("Number of datasets available: {}".format(len(csw.records.keys())))
 
 
-# In[ ]:
+# In[7]:
 
 def service_urls(records, service='odp:url'):
     """Extract service_urls of a specific type (DAP, SOS) from records."""
@@ -141,7 +142,7 @@ def service_urls(records, service='odp:url'):
     return urls
 
 
-# In[ ]:
+# In[8]:
 
 dap_urls = service_urls(csw.records, service='odp:url')
 sos_urls = service_urls(csw.records, service='sos:url')
@@ -159,7 +160,7 @@ for url in sos_urls:
     log.info('{}'.format(url))
 
 
-# In[ ]:
+# In[9]:
 
 from pyoos.collectors.coops.coops_sos import CoopsSos
 
@@ -178,7 +179,7 @@ log.info(fmt(' Collector offerings '))
 log.info('{}: {} offerings'.format(title, len(ofrs)))
 
 
-# In[ ]:
+# In[10]:
 
 import requests
 from urlparse import urlparse
@@ -211,7 +212,7 @@ def sos_request(url='opendap.co-ops.nos.noaa.gov/ioos-dif-sos/SOS', **kw):
         raise TypeError('Bad url {}'.format(r.url))
 
 
-# In[ ]:
+# In[11]:
 
 from pandas import read_csv
 
@@ -229,7 +230,7 @@ log.info('SOS URL request: {}'.format(url))
 
 # #### Clean the dataframe (visualization purpose only)
 
-# In[ ]:
+# In[12]:
 
 from lxml import etree
 from urllib import urlopen
@@ -254,7 +255,7 @@ def get_coops_longname(station):
     return longName[0]
 
 
-# In[ ]:
+# In[13]:
 
 columns = {'datum_id': 'datum',
            'sensor_id': 'sensor',
@@ -278,7 +279,7 @@ observations.head()
 
 # #### Generate a uniform 6-min time base for model/data comparison
 
-# In[ ]:
+# In[14]:
 
 from io import BytesIO
 from iris.pandas import as_cube
@@ -296,8 +297,7 @@ def coops2df(collector, coops_id):
 
 
 def save_timeseries(df, outfile, standard_name, **kw):
-    """http://cfconventions.org/Data/cf-convetions/cf-conventions-1.6/build
-    /cf-conventions.html#idp5577536"""
+    """http://cfconventions.org/Data/cf-convetions/cf-conventions-1.6/build/cf-conventions.html#idp5577536"""
     cube = as_cube(df, calendars={1: iris.unit.CALENDAR_GREGORIAN})
     cube.coord("index").rename("time")
     cube.coord("columns").rename("station name")
@@ -337,7 +337,7 @@ def save_timeseries(df, outfile, standard_name, **kw):
     iris.save(cube, outfile)
 
 
-# In[ ]:
+# In[15]:
 
 import iris
 from pandas import DataFrame
@@ -346,7 +346,7 @@ from owslib.ows import ExceptionReport
 iris.FUTURE.netcdf_promote = True
 
 log.info(fmt(' Observations '))
-fname = '{:%Y-%m-%d}-OBS_DATA.nc'.format(stop)
+fname = '{}-OBS_DATA.nc'.format(run_name)
 
 log.info(fmt(' Downloading to file {} '.format(fname)))
 data = dict()
@@ -389,7 +389,7 @@ obs_data.head()
 
 # #### Loop discovered models and save the nearest time-series
 
-# In[ ]:
+# In[16]:
 
 import signal
 from contextlib import contextmanager
@@ -399,7 +399,7 @@ from oceans import wrap_lon180
 
 from iris import Constraint
 from iris.cube import CubeList
-from iris.exceptions import CoordinateMultiDimError
+from iris.exceptions import CoordinateMultiDimError, CoordinateNotFoundError
 
 water_level = ['sea_surface_height',
                'sea_surface_elevation',
@@ -605,21 +605,36 @@ def get_cube(url, name_list, bbox=None, time=None, units=None, callback=None,
     return cube
 
 
+def remove_parenthesis(word):
+    try:
+        return word[word.index("(") + 1:word.rindex(")")]
+    except ValueError:
+        return word
+
+
 def get_model_name(cube, url):
     url = parse_url(url)
     try:
         model_full_name = cube.attributes['title']
     except AttributeError:
         model_full_name = url
-    mod_name = model_full_name.split()[0]
+    words = []
+    for word in model_full_name.split():
+        if word.isupper():
+            words.append(remove_parenthesis(word))
+    mod_name = ' '.join(words)
+    if not mod_name:
+        mod_name = ''.join([c for c in model_full_name.split('(')[0]
+                            if c.isupper()])
+    if len(mod_name.split()) > 1:
+        mod_name = '_'.join(mod_name.split()[:2])
     return mod_name, model_full_name
 
 
-# In[ ]:
+# In[17]:
 
 import warnings
-from iris.exceptions import (CoordinateNotFoundError, ConstraintMismatchError,
-                             MergeError)
+from iris.exceptions import ConstraintMismatchError, MergeError
 
 
 log.info(fmt(' Models '))
@@ -646,7 +661,7 @@ with warnings.catch_warnings():
             log.warning('Cannot get cube for: {}\n{}'.format(url, e))
 
 
-# In[ ]:
+# In[18]:
 
 import numpy.ma as ma
 from scipy.spatial import cKDTree as KDTree
@@ -752,13 +767,13 @@ def make_aux_coord(cube, axis='Y'):
     return cube
 
 
-# In[ ]:
+# In[19]:
 
 from iris.pandas import as_series
 
 
 for mod_name, cube in cubes.items():
-    fname = '{:%Y-%m-%d}-{}.nc'.format(stop, mod_name)
+    fname = '{}-{}.nc'.format(run_name, mod_name)
     log.info(fmt(' Saving to file {} '.format(fname)))
     # NOTE: 2D coords KDtree.  (Iris can only do 1D coords KDtree for now.)
     try:
@@ -803,7 +818,7 @@ for mod_name, cube in cubes.items():
 
 # ### Add extra stations.
 
-# In[ ]:
+# In[20]:
 
 include = dict({'Scituate, MA': dict(lon=-70.7166, lat=42.9259),
                 'Wells, ME': dict(lon=-70.583883, lat=43.272411)})
@@ -839,7 +854,7 @@ for station, obs in include.items():
 
 # #### Load saved files and interpolate to the observations time interval
 
-# In[ ]:
+# In[21]:
 
 from iris.pandas import as_data_frame
 
@@ -861,7 +876,7 @@ def nc2df(fname):
     return df
 
 
-# In[ ]:
+# In[22]:
 
 from glob import glob
 from operator import itemgetter
@@ -897,7 +912,7 @@ dfs = Panel.fromDict(dfs).swapaxes(0, 2)
 
 # ### Bias
 
-# In[ ]:
+# In[23]:
 
 from pandas import DataFrame
 
@@ -923,7 +938,7 @@ bias.T
 
 # ### Model skill
 
-# In[ ]:
+# In[24]:
 
 def both_valid(x, y):
     """Returns a mask where both series are valid."""
@@ -932,7 +947,7 @@ def both_valid(x, y):
     return np.logical_and(~mask_x, ~mask_y)
 
 
-# In[ ]:
+# In[25]:
 
 from scipy.stats.stats import pearsonr
 
@@ -957,7 +972,7 @@ columns = dict()
 df.rename(columns=columns, inplace=True)
 
 
-# In[ ]:
+# In[26]:
 
 fname = 'skill.html'
 
@@ -968,7 +983,7 @@ df_skill.T
 
 # ### Map
 
-# In[ ]:
+# In[27]:
 
 from folium.folium import Map
 import matplotlib.pyplot as plt
@@ -1024,12 +1039,12 @@ def make_map(bbox, **kw):
 def plot_series():
     fig, ax = plt.subplots(figsize=(width, height))
     ax.set_ylabel('Sea surface height (m)')
-    ax.set_ylim(-2.5, 2.5)
+    ax.set_ylim(-3, 3)
     ax.grid(True)
     return fig, ax
 
 
-# In[ ]:
+# In[28]:
 
 # Clusters.
 big_list = []
@@ -1051,7 +1066,7 @@ df.set_index('station', drop=True, inplace=True)
 groups = df.groupby(df.index)
 
 
-# In[ ]:
+# In[29]:
 
 from mpld3 import save_html
 from mpld3.plugins import LineLabelTooltip, connect
@@ -1124,7 +1139,7 @@ if isinstance(bad_datum, DataFrame):
         mapa.simple_marker(location=[obs['lat'], obs['lon']], **kw)
 
 
-# In[ ]:
+# In[30]:
 
 for station in include.keys():
     models = extra_series[station]
@@ -1162,20 +1177,20 @@ for station in include.keys():
                                      include[station]['lon']], **kw)
 
 
-# In[ ]:
+# In[31]:
 
 mapa.create_map(path='mapa.html')
 inline_map('mapa.html')
 
 
-# In[ ]:
+# In[32]:
 
 elapsed = time.time() - start_time
 log.info('{:.2f} minutes'.format(elapsed/60.))
 log.info('EOF')
 
 
-# In[ ]:
+# In[33]:
 
 with open('log.txt') as f:
     print(f.read())
